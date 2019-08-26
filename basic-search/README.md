@@ -23,10 +23,6 @@ use values from the console (what was used to create the application) - use "def
 7. Click "deployment log" to track the deployment. "Installation succeeded!" in the bottom pane indicates success 
 
 8. Click "Instances" at the top, then "endpoints". Click the endpoint to validate it is up. _Temporary workaround: use http (not https) and port 443) - example http://end.point.name:443_.
-One can also use:
-```sh
-$ mvn -DprivateKeyFile=$HOME/Downloads/mytenantname.myappname.myinstancename.pem vespa:endpoints # test this!
-```
 
 9. Feed documents
 ```sh
