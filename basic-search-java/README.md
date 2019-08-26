@@ -28,24 +28,17 @@ use values from the console (what was used to create the application)
  ```sh
  $ mvn clean package
  ```
- 
-6. In the console, click "Deploy", and click to generate a deploy key; this downloads the key file to
-`$HOME/Downloads/my-tenant.my-application.my-instance.pem`
-Set the `privateKeyFile` property in `pom.xml` to the absolute path of the key, then use it to deploy
+
+6. In the "Deploy to dev" console section, upload _target/application.zip_ - click "Deploy"
+
+7. Click "deployment log" to track the deployment. "Installation succeeded!" in the bottom pane indicates success 
+
+8. Click "Instances" at the top, then "endpoints". Click the endpoint to validate it is up. _Temporary workaround: use http (not https) and port 443) - example http://end.point.name:443_.
+
+9. Feed documents
 ```sh
-$ mvn vespa:deploy
-```
-
-7. Alternatively, in the "Deploy to dev" console section, upload _target/application.zip_ - click "Deploy"
-
-8. Click "deployment log" to track the deployment. "Installation succeeded!" in the bottom pane indicates success 
-
-9. Click "Instances" at the top, then "endpoints". Click the endpoint to validate it is up. _Temporary workaround: use http (not https) and port 443) - example http://end.point.name:443_.
-
-10. Feed documents
-```sh
-$ curl -H "Content-Type:application/json" --data-binary  @music-data-1.json http://endpoint:443/document/v1/music/music/docid/1
-$ curl -H "Content-Type:application/json" --data-binary  @music-data-2.json http://endpoint:443/document/v1/music/music/docid/2
+$ curl -H "Content-Type:application/json" --data-binary  @music-data-feed.json http://endpoint:443/document/v1/music/music/docid/1
+$ curl -H "Content-Type:application/json" --data-binary  @music-data-update.json http://endpoint:443/document/v1/music/music/docid/2
 ```
 
 11. Visit documents
@@ -57,10 +50,3 @@ $ curl http://endpoint:443/document/v1/music/music/docid?wantedDocumentCount=100
 ```sh
 $ curl http://endpoint:443/search/?query=bad
 ```
-
-13. Run integration tests
-Run the included _ExampleSystemTest_ using
-```sh
-$ mvn test -Dtest.categories=system
-```
-or run it directly from your IDEA.
