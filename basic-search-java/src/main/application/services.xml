@@ -17,7 +17,7 @@
                 </searcher>
             </chain>
         </search>
-        <nodes count="2" />
+        <nodes count="1" />
     </container>
 
     <content id="music" version="1.0">
@@ -25,7 +25,7 @@
         <documents>
             <document type="music" mode="index" />
         </documents>
-        <nodes count="2" />
+        <nodes count="1" />
     </content>
 
 </services>
