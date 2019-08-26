@@ -29,9 +29,9 @@ use values from the console (what was used to create the application)
  $ mvn clean package
  ```
  
-6. In the console, click "Deploy", and click to generate a deploy key; this downloads the key file.
-Set the `privateKeyFile` property in `pom.xml` to point to the key: `$HOME/Downloads/mytenant.myapp.myinstance.pem`,
-then use it to deploy
+6. In the console, click "Deploy", and click to generate a deploy key; this downloads the key file to
+`$HOME/Downloads/my-tenant.my-application.my-instance.pem`
+Set the `privateKeyFile` property in `pom.xml` to the absolute path of the key, then use it to deploy
 ```sh
 $ mvn vespa:deploy
 ```

@@ -3,7 +3,7 @@
 <services version="1.0">
 
     <container id="default" version="1.0">
-        <document-api/>
+        <document-api />
         <search>
             <chain id="metalchain" inherits="vespa">
                 <searcher id="com.mydomain.example.MetalSearcher" bundle="basic-search-java" after="MinimalQueryInserter">
@@ -17,9 +17,7 @@
                 </searcher>
             </chain>
         </search>
-        <nodes>
-            <node hostalias="node1"/>
-        </nodes>
+        <nodes count="2" />
     </container>
 
     <content id="music" version="1.0">
@@ -27,9 +25,7 @@
         <documents>
             <document type="music" mode="index" />
         </documents>
-        <nodes>
-            <node hostalias="node1" distribution-key="0" />
-        </nodes>
+        <nodes count="2" />
     </content>
 
 </services>
