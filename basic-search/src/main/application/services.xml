@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2017 Yahoo Holdings. Licensed under the terms of the Apache 2.0 license. See LICENSE in the project root. -->
+<!-- Copyright 2019 Oath Inc. Licensed under the terms of the Apache 2.0 license. See LICENSE in the project root. -->
 <services version="1.0">
 
   <container id="container" version="1.0">
     <document-api />
     <search />
-    <nodes>
-      <node hostalias="node1" />
-    </nodes>
+    <nodes count="1" />
   </container>
 
   <content id="music" version="1.0">
@@ -15,10 +13,7 @@
     <documents>
       <document type="music" mode="index" />
     </documents>
-    <nodes>
-      <node hostalias="node1" distribution-key="0" />
-    </nodes>
+    <nodes count="1" />
   </content>
 
 </services>
-
