@@ -10,7 +10,7 @@ Prerequisites: git
 
 3. Download sample app:
 ```sh
-$ git git@github.com:vespa-cloud/sample-apps.git && cd sample-apps/basic-search
+$ git clone git@github.com:vespa-cloud/sample-apps.git && cd sample-apps/basic-search
 ```
 
 4. Create the application package
