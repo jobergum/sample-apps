@@ -20,10 +20,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class Rot13DocumentProcessorTest {
+class Rot13DocumentProcessorTest {
 
     @Test
-    public void requireThatBasicDocumentProcessingWorksForDoc() throws IOException {
+    void requireThatBasicDocumentProcessingWorksForDoc() throws IOException {
         JDisc container = new ApplicationBuilder()
                 .servicesXml("<container version=\"1.0\">\n" +
                         "  <document-processing>\n" +
