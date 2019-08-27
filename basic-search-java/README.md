@@ -12,55 +12,58 @@ for more information.
 ## Getting started
 Prerequisites: git, Java 11, mvn 3.6.1
 
-1. Go to https://console.vespa-external.aws.oath.cloud/
+1.  Go to https://console.vespa-external.aws.oath.cloud/
 
-2. Click "Create new tenant", then go to this tenant and click "Create application"
+1.  Click "Create new tenant", then go to this tenant and click "Create application"
 
-3. Download this sample app:
- ```sh
- $ git clone git@github.com:vespa-cloud/sample-apps.git && cd sample-apps/basic-search-java
- ```
+1.  Download this sample app:
+     ```sh
+     $ git clone git@github.com:vespa-cloud/sample-apps.git && cd sample-apps/basic-search-java
+     ```
  
-4. Edit the properties `tenant` and `application` in `pom.xml` —
-use values from the console (what was used to create the application)
+1.  Edit the properties `tenant` and `application` in `pom.xml` — use the values you entered in the console in 2. 
 
-5. Build the java sample app:
- ```sh
- $ mvn clean package
- ```
+1.  Build the java sample app:
+     ```sh
+     $ mvn clean package
+     ```
  
-6. In the console, click "Deploy", and click to generate a deploy key; this downloads the key file to
-`$HOME/Downloads/my-tenant.my-application.my-instance.pem`
-Set the `privateKeyFile` property in `pom.xml` to the absolute path of the key, then use it to deploy
-```sh
-$ mvn vespa:deploy
-```
+1.  Deploy with a key pair:
+    1. In the console, click "Deploy", and generate a deploy key (at the bottom); the key is downloaded to
+       `$HOME/Downloads/tenant.application.instance.pem`. Set the `privateKeyFile` property in 
+       `pom.xml` to the absolute path of the key.
+    1. Deploy with
+       ```sh
+       $ mvn vespa:deploy
+       ```
+    1. The endpoint URLs are printed when the deployment is successful.
 
-7. Alternatively, in the "Deploy to dev" console section, upload _target/application.zip_ - click "Deploy"
+1.  Alternatively, deploy through the console:
+    1. In the "Deploy to dev" console section, upload _target/application.zip_, then click "Deploy".
+    1. Click "deployment log" to track the deployment. "Installation succeeded!" in the bottom pane indicates success.
+    1. Click "Zones" at the top, then "endpoints", to find the endpoint URLs.
 
-8. Click "deployment log" to track the deployment. "Installation succeeded!" in the bottom pane indicates success 
+1.  Open an endpoint in a browser to validate it is up.
+    __Temporary workaround: change to http (not https) and port 443, e.g., http://end.point:443.__
 
-9. Click "Instances" at the top, then "endpoints". Click the endpoint to validate it is up. _Temporary workaround: use http (not https) and port 443) - example http://end.point.name:443_.
+1.  Feed documents
+    ```sh
+    $ curl -H "Content-Type:application/json" --data-binary  @music-data-1.json http://endpoint:443/document/v1/music/music/docid/1
+    $ curl -H "Content-Type:application/json" --data-binary  @music-data-2.json http://endpoint:443/document/v1/music/music/docid/2
+    ```
 
-10. Feed documents
-```sh
-$ curl -H "Content-Type:application/json" --data-binary  @music-data-1.json http://endpoint:443/document/v1/music/music/docid/1
-$ curl -H "Content-Type:application/json" --data-binary  @music-data-2.json http://endpoint:443/document/v1/music/music/docid/2
-```
+1.  Visit documents
+    ```sh
+    $ curl http://endpoint:443/document/v1/music/music/docid?wantedDocumentCount=100
+    ```
 
-11. Visit documents
-```sh
-$ curl http://endpoint:443/document/v1/music/music/docid?wantedDocumentCount=100
-```
+1.  Search documents
+    ```sh
+    $ curl http://endpoint:443/search/?query=bad
+    ```
 
-12. Search documents
-```sh
-$ curl http://endpoint:443/search/?query=bad
-```
-
-13. Run integration tests
-Run the included _ExampleSystemTest_ using
-```sh
-$ mvn test -Dtest.categories=system
-```
-or run it directly from your IDEA.
+1.  If you downloaded the deploy key, run the included integration test _ExampleSystemTest_ with
+    ```sh
+    $ mvn test -Dtest.categories=system
+    ```
+    or run it directly from your IDEA.
