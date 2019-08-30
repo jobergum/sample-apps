@@ -49,7 +49,7 @@ class FeedAndSearchSystemTest {
 
         var searchResult = endpoint.send(endpoint.request("/search",
                                                           Map.of("yql", yql)));
-        var searchInspector = new JsonDecoder().decode(new Slime(), emptyResult.body().getBytes(UTF_8)).get();
+        var searchInspector = new JsonDecoder().decode(new Slime(), searchResult.body().getBytes(UTF_8)).get();
         assertEquals(200, searchResult.statusCode());
         assertTrue(searchInspector.field("root").field("fields").field("totalCount").valid());
         assertEquals(1, searchInspector.field("root").field("fields").field("totalCount").asLong());
