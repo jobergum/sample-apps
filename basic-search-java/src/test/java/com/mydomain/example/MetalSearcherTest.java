@@ -42,7 +42,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  *     <li>Simple use of config injection</li>
  * </ol>
  */
-public class MetalSearcherTest {
+class MetalSearcherTest {
 
     private Query metalQuery;
 
@@ -50,7 +50,7 @@ public class MetalSearcherTest {
      *
      */
     @BeforeEach
-    public void initQuery() {
+    void initQuery() {
         metalQuery = new Query("/search/?yql=" +
                 encode("select * from sources * where artist contains \"hetfield\" and title contains\"master of puppets\";",
                         StandardCharsets.UTF_8));
@@ -59,7 +59,7 @@ public class MetalSearcherTest {
 
 
     @Test
-    public void testAddedOrTerm1() {
+    void testAddedOrTerm1() {
 
         MetalNamesConfig.Builder builder = new MetalNamesConfig.Builder();
         builder.metalWords(Arrays.asList("hetfield", "metallica", "pantera"));
@@ -77,7 +77,7 @@ public class MetalSearcherTest {
 
 
     @Test
-    public void testAddedOrTerm2() {
+    void testAddedOrTerm2() {
 
         try (Application app = Application.fromApplicationPackage(
                 FileSystems.getDefault().getPath("src/main/application"),
@@ -92,7 +92,7 @@ public class MetalSearcherTest {
 
 
     @Test
-    public void testWithMockBackendProducingHits() {
+    void testWithMockBackendProducingHits() {
 
         DocumentSourceSearcher docSource = new DocumentSourceSearcher();
         Query testQuery = new Query();
@@ -113,17 +113,6 @@ public class MetalSearcherTest {
 
         assertEquals(2, result.hits().size());
     }
-
-
-
-    // ToDo: From the older versions of this app, a feature and test to demonstrate how to add hits
-    // process the result (add a synthetic hit)
-    // result.hits().add(new Hit("test:hit", 1.0));
-    //    public void testSearcherOnly() {
-    //        Result result = newExecution(new MetalSearcher()).search(new Query());
-    //        assertEquals("Artificial hit is added", "test:hit", result.hits().get(0).getId().toString());
-    //    }
-
 
     private void assertAddedOrTerm(Item root) {
         // Assert that an OR term is added to the root, with album:metal as one of the or-terms:

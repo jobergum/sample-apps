@@ -49,18 +49,7 @@ public class MetalSearcher extends Searcher {
             query.trace("Metal added", true, 2);
         }
 
-        Result result = execution.search(query);
-
-        // result.hits().add(new Hit("test:hit", 1.0)); ToDo: expand example with a Searcher that adds hits
-
-        return result;
-    }
-
-    private boolean isMetalQuery(Item items) {
-        for (IndexedItem posItem : QueryTree.getPositiveTerms(items) ) {
-            return metalWords.contains(posItem.getIndexedString());
-        }
-        return false;
+        return execution.search(query);
     }
 
     private boolean isMetalQuery(QueryTree tree) {

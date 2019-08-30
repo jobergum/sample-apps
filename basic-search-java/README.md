@@ -48,15 +48,14 @@ Prerequisites: git, Java 11, mvn 3.6.1
 
 1.  Feed documents
     ```sh
-    $ curl -H "Content-Type:application/json" --data-binary  @music-data-1.json http://endpoint:443/document/v1/music/music/docid/1
-    $ curl -H "Content-Type:application/json" --data-binary  @music-data-2.json http://endpoint:443/document/v1/music/music/docid/2
+    $ curl -H "Content-Type:application/json" --data-binary  @music-data-feed.json http://endpoint:443/document/v1/music/music/docid/1
+    $ curl -H "Content-Type:application/json" --data-binary  @music-data-update.json http://endpoint:443/document/v1/music/music/docid/2
     ```
 
 1.  Visit documents
     ```sh
     $ curl http://endpoint:443/document/v1/music/music/docid?wantedDocumentCount=100
     ```
-
 1.  Search documents
     ```sh
     $ curl http://endpoint:443/search/?query=bad
@@ -67,3 +66,4 @@ Prerequisites: git, Java 11, mvn 3.6.1
     $ mvn test -Dtest.categories=system
     ```
     or run it directly from your IDEA.
+
