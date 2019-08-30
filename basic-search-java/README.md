@@ -30,8 +30,8 @@ Prerequisites: git, Java 11, mvn 3.6.1
  
 1.  Deploy with a key pair:
     1. In the console, click "Deploy", and generate a deploy key (at the bottom); the key is downloaded to
-       `$HOME/Downloads/tenant.application.instance.pem`. Set the `privateKeyFile` property in 
-       `pom.xml` to the absolute path of the key.
+       `$HOME/Downloads/tenant.application.instance.pem`.
+    1. Set the `privateKeyFile` property in `pom.xml` to the absolute path of the key.
     1. Deploy with
        ```sh
        $ mvn vespa:deploy
